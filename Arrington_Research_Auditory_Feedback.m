@@ -34,16 +34,7 @@ function varargout = Arrington_Research_Auditory_Feedback_OutputFcn(hObject, eve
 % Get default command line output from handles structure
 varargout{1} = handles.output;
 
-%-----------------Area of Interest: Radial Size (Edit Text)-----------------%
-
-function AOI_Radial_Size_Callback(hObject, eventdata, handles)
-       
-     
-function AOI_Radial_Size_CreateFcn(hObject, eventdata, handles)
-
-    if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-        set(hObject,'BackgroundColor','white');
-end
+%--------------------------AREA OF INTEREST------------------------------%
 
 %-----------------Area of Interest: X-Position (Edit Text)------------------%
 
@@ -66,44 +57,97 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
+%-----------------Area of Interest: Radial Size (Edit Text)-----------------%
+
+function AOI_Radial_Size_Callback(hObject, eventdata, handles)
+       
+     
+function AOI_Radial_Size_CreateFcn(hObject, eventdata, handles)
+
+    if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+        set(hObject,'BackgroundColor','white');
+end
+
+
 %-----------------Area of Interest: Set Size (Push Button)------------------%
-function AOI_Set_Size_Button_Callback(hObject, eventdata, handles)
+function AOI_Set_Radial_Size_Button_Callback(hObject, eventdata, handles)
            
 
-%-----------------Area of Interest: Set Location (Push Button)------------------%
-function AOI_Set_Location_Button_Callback(hObject, eventdata, handles)
+%-----------------Area of Interest: Set Fixation Point (Push Button)------------------%
+function AOI_Set_Fixation_Button_Callback(hObject, eventdata, handles)
         x_position = 4.16;
         y_position = 8.63;
         fprintf('%i\n',x_position);
         fprintf('%i\n',y_position);
 
-%-----------------Contrast : Luminance (Slider)------------------------%
-function Contrast_Lum_Slider_Callback(hObject, eventdata, handles)
+%-----------------------------------------------------------------------%
 
-function Contrast_Lum_Slider_CreateFcn(hObject, eventdata, handles)
+%--------------------------RADIAL CONTRAST------------------------------%
+
+%-----------------Radial Contrast : Luminance (Slider)------------------------%
+function Radial_Contrast_Lum_Slider_Callback(hObject, eventdata, handles)
+
+function Radial_Contrast_Lum_Slider_CreateFcn(hObject, eventdata, handles)
 
 if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor',[.9 .9 .9]);
 end
 
-%-----------------Contrast : Color (Pull Down Menu)------------------------%
-function Contrast_Colors_Callback(hObject, eventdata, handles)
+%----------------- Radial Contrast : Color (Pull Down Menu)------------------------%
+function Radial_Contrast_Colors_Callback(hObject, eventdata, handles)
 
-function Contrast_Colors_CreateFcn(hObject, eventdata, handles)
+function Radial_Contrast_Colors_CreateFcn(hObject, eventdata, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
 
-%-----------------Contrast : Change Color (Push Button)------------------------%
-function Change_Color_Button_Callback(hObject, eventdata, handles)
+%----------------- Radial Contrast : Change Color (Push Button)------------------------%
+function Radial_Change_Color_Button_Callback(hObject, eventdata, handles)
 
-%-----------------Contrast : Change Background(Push Button)------------------------%
-function Change_Background_Button_Callback(hObject, eventdata, handles)
+%----------------- Radial Contrast : Change Background Image(Push Button)------------------------%
+function Radial_Change_Background_Button_Callback(hObject, eventdata, handles)
 
-%-----------------Fixation Point : Change Symbol(Push Button)------------------------%
-function Change_Fixation_Symbol_Button_Callback(hObject, eventdata, handles)
 
+%-----------------------------------------------------------------------%
+
+%--------------------------FIXATION POINT CONTRAST------------------------------%
+
+%----------------- Fixation Point Contrast : Current Symbol(Axes)------------------------%
+function Fixation_Point_Current_Symbol_CreateFcn(hObject, eventdata, handles)
+
+%----------------- Fixation Point Contrast : Change Symbol (Push Button)------------------------%
+function Fixation_Point_Change_Symbol_Callback(hObject, eventdata, handles)
+
+
+%-----------------Fixation_Point Contrast : Luminance (Slider)------------------------%
+function Fixation_Point_Contrast_Lum_Slider_Callback(hObject, eventdata, handles)
+
+function Fixation_Point_Contrast_Lum_Slider_CreateFcn(hObject, eventdata, handles)
+
+if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor',[.9 .9 .9]);
+end
+
+%----------------- Fixation_Point Contrast : Color (Pull Down Menu)------------------------%
+function Fixation_Point_Contrast_Colors_Callback(hObject, eventdata, handles)
+
+function Fixation_Point_Contrast_Colors_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+%----------------- Fixation_Point Contrast : Change Color (Push Button)------------------------%
+function Fixation_Point_Change_Color_Button_Callback(hObject, eventdata, handles)
+
+%----------------- Fixation_Point Contrast : Change Background Image(Push Button)------------------------%
+function Fixation_Point_Change_Background_Button_Callback(hObject, eventdata, handles)
+
+
+%-----------------------------------------------------------------------%
+
+%--------------------------AUDITORY FEEDBACK--------------------------
 
 %-----------------Auditory Feedback: Current Feedback Signal(Edit Text)------------------------%
 function Current_Feedback_Signal_Text_CreateFcn(hObject, eventdata, handles)
@@ -111,3 +155,57 @@ function Current_Feedback_Signal_Text_CreateFcn(hObject, eventdata, handles)
 
 %-----------------Auditory Feedback: Current Tone Frequency(Edit Text)------------------------%
 function Current_Feedback_Freq_Text_CreateFcn(hObject, eventdata, handles)
+
+%-----------------Auditory Feedback: Feedback Signal Types (Radio Button)------------------------%
+function Feedback_Signal_Types_CreateFcn(hObject, eventdata, handles)
+
+function Feedback_Signal_Types_SelectionChangeFcn(hObject, eventdata, handles)
+
+
+%-----------------Auditory Feedback: Change Feedback Signal(Push Button)------------------------%
+function Change_Feedback_Signal_Type_Callback(hObject, eventdata, handles)
+
+%-----------------Auditory Feedback: Change X Position (Static Text)------------------------%
+function Current_X_Position_Text_CreateFcn(hObject, eventdata, handles)
+
+
+%-----------------Auditory Feedback: Change Y Position (Static Text)------------------------%
+function Current_Y_Position_Text_CreateFcn(hObject, eventdata, handles)
+
+
+%-----------------Auditory Feedback: Eye Position within AOI (Static Text)------------------------%
+function Eye_Position_Area_Interest_Text_CreateFcn(hObject, eventdata, handles)
+
+%-----------------------------------------------------------------------%
+
+%--------------------------TRIALS---------------------------------------------------%
+
+%-----------------Trials: Number of Trials (Edit Text)------------------------%
+function Number_Trials_Callback(hObject, eventdata, handles)
+
+function Number_Trials_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+%-----------------Trials: Trial Duration (seconds) (Edit Text)------------------------%
+function Trial_Duration_Callback(hObject, eventdata, handles)
+
+function Trial_Duration_CreateFcn(hObject, eventdata, handles)
+
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+%-----------------Trials: Current Trial (Static Text)------------------------%
+function Current_Trial_Text_CreateFcn(hObject, eventdata, handles)
+
+%-----------------Trials: Run Trial (Push Button)------------------------%
+function Run_Trial_Button_Callback(hObject, eventdata, handles)
+
+%-----------------Trials: Stop Trial (Push Button)------------------------%
+function Stop_Trial_Button_Callback(hObject, eventdata, handles)
+
+
