@@ -38,47 +38,46 @@ varargout{1} = handles.output;
 
 %-----------------Area of Interest: X-Position (Edit Text)------------------%
 
-
 function AOI_X_Position_Callback(hObject, eventdata, handles)
 
 function AOI_X_Position_CreateFcn(hObject, eventdata, handles)
 
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
+if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor',[.9 .9 .9]);
 end
-
+       
 %-----------------Area of Interest: Y-Position (Edit Text)------------------%
 
 function AOI_Y_Position_Callback(hObject, eventdata, handles)
-        
+
 function AOI_Y_Position_CreateFcn(hObject, eventdata, handles)
 
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
+if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor',[.9 .9 .9]);
 end
-
+       
+        
 %-----------------Area of Interest: Radial Size (Edit Text)-----------------%
 
 function AOI_Radial_Size_Callback(hObject, eventdata, handles)
-       
-     
+
 function AOI_Radial_Size_CreateFcn(hObject, eventdata, handles)
 
-    if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-        set(hObject,'BackgroundColor','white');
+if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor',[.9 .9 .9]);
 end
-
-
+    
 %-----------------Area of Interest: Set Size (Push Button)------------------%
 function AOI_Set_Radial_Size_Button_Callback(hObject, eventdata, handles)
-           
+        radial_size = get(handles.AOI_Radial_Size,'String'); % Radial Size
+        fprintf('%i\n',str2double(radial_size));   
 
 %-----------------Area of Interest: Set Fixation Point (Push Button)------------------%
-function AOI_Set_Fixation_Button_Callback(hObject, eventdata, handles)
-        x_position = 4.16;
-        y_position = 8.63;
-        fprintf('%i\n',x_position);
-        fprintf('%i\n',y_position);
+function AOI_Set_Fixation_Button_Callback(hObject, eventdata, handles) 
+        eye_x_position = get(handles.AOI_X_Position,'String'); % Eye X Position
+        eye_y_position = get(handles.AOI_Y_Position,'String'); % Eye Y Position
+        fprintf('%i\n',str2double(eye_x_position));
+        fprintf('%i\n',str2double(eye_y_position));
 
 %-----------------------------------------------------------------------%
 
@@ -86,6 +85,8 @@ function AOI_Set_Fixation_Button_Callback(hObject, eventdata, handles)
 
 %-----------------Radial Contrast : Luminance (Slider)------------------------%
 function Radial_Contrast_Lum_Slider_Callback(hObject, eventdata, handles)
+        current_slider_pos = get(hObject,'Value');
+        fprintf('%i\n',current_slider_pos);
 
 function Radial_Contrast_Lum_Slider_CreateFcn(hObject, eventdata, handles)
 
@@ -207,5 +208,3 @@ function Run_Trial_Button_Callback(hObject, eventdata, handles)
 
 %-----------------Trials: Stop Trial (Push Button)------------------------%
 function Stop_Trial_Button_Callback(hObject, eventdata, handles)
-
-
