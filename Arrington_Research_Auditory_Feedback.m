@@ -85,8 +85,8 @@ function AOI_Set_Fixation_Button_Callback(hObject, eventdata, handles)
 
 %-----------------Radial Contrast : Luminance (Slider)------------------------%
 function Radial_Contrast_Lum_Slider_Callback(hObject, eventdata, handles)
-        current_slider_pos = get(hObject,'Value');
-        fprintf('%i\n',current_slider_pos);
+        radial_contrast_current_slider_pos = get(hObject,'Value');
+        fprintf('%i\n',radial_contrast_current_slider_pos);
 
 function Radial_Contrast_Lum_Slider_CreateFcn(hObject, eventdata, handles)
 
@@ -105,7 +105,8 @@ end
 
 %----------------- Radial Contrast : Change Color (Push Button)------------------------%
 function Radial_Change_Color_Button_Callback(hObject, eventdata, handles)
-
+            radial_selected_color = get(hObject,'Value');
+            fprintf('%d\n',radial_selected_color);
 %----------------- Radial Contrast : Change Background Image(Push Button)------------------------%
 function Radial_Change_Background_Button_Callback(hObject, eventdata, handles)
 
@@ -123,6 +124,8 @@ function Fixation_Point_Change_Symbol_Callback(hObject, eventdata, handles)
 
 %-----------------Fixation_Point Contrast : Luminance (Slider)------------------------%
 function Fixation_Point_Contrast_Lum_Slider_Callback(hObject, eventdata, handles)
+        fixation_contrast_current_slider_pos = get(hObject,'Value');
+        fprintf('%i\n',fixation_contrast_current_slider_pos);
 
 function Fixation_Point_Contrast_Lum_Slider_CreateFcn(hObject, eventdata, handles)
 
@@ -152,29 +155,40 @@ function Fixation_Point_Change_Background_Button_Callback(hObject, eventdata, ha
 
 %-----------------Auditory Feedback: Current Feedback Signal(Edit Text)------------------------%
 function Current_Feedback_Signal_Text_CreateFcn(hObject, eventdata, handles)
-
-
+         
 %-----------------Auditory Feedback: Current Tone Frequency(Edit Text)------------------------%
 function Current_Feedback_Freq_Text_CreateFcn(hObject, eventdata, handles)
 
-%-----------------Auditory Feedback: Feedback Signal Types (Radio Button)------------------------%
-function Feedback_Signal_Types_CreateFcn(hObject, eventdata, handles)
 
-function Feedback_Signal_Types_SelectionChangeFcn(hObject, eventdata, handles)
+%-----------------Auditory Feedback: Select Feedback Signal Type (Button Group)------------------------%
+function Feedback_Signal_Types_Panel_CreateFcn(hObject, eventdata, handles)
 
-
-%-----------------Auditory Feedback: Change Feedback Signal(Push Button)------------------------%
-function Change_Feedback_Signal_Type_Callback(hObject, eventdata, handles)
-
-%-----------------Auditory Feedback: Change X Position (Static Text)------------------------%
+function Feedback_Signal_Types_Panel_SelectionChangeFcn(hObject, eventdata, handles)
+        
+        % Initialize Feedback Signal
+        feedback_tone = 'Tone';
+        feedback_click = 'Click';
+        
+        % Gets Selected Feedback Signal
+        selected_feedback_signal = get(eventdata.NewValue,'Tag');
+        
+        switch selected_feedback_signal 
+            case 'Feedback_Signal_Tone'
+                set(handles.Current_Feedback_Signal_Text,'String',feedback_tone);
+            otherwise
+                set(handles.Current_Feedback_Signal_Text,'String',feedback_click);
+        end
+        
+         
+%-----------------Patient's Eye Position: Change X Position (Static Text)------------------------%
 function Current_X_Position_Text_CreateFcn(hObject, eventdata, handles)
 
 
-%-----------------Auditory Feedback: Change Y Position (Static Text)------------------------%
+%-----------------Patient's Eye Position: Change Y Position (Static Text)------------------------%
 function Current_Y_Position_Text_CreateFcn(hObject, eventdata, handles)
 
 
-%-----------------Auditory Feedback: Eye Position within AOI (Static Text)------------------------%
+%-----------------Patient's Eye Position: Eye Position within AOI (Static Text)------------------------%
 function Eye_Position_Area_Interest_Text_CreateFcn(hObject, eventdata, handles)
 
 %-----------------------------------------------------------------------%
@@ -183,6 +197,7 @@ function Eye_Position_Area_Interest_Text_CreateFcn(hObject, eventdata, handles)
 
 %-----------------Trials: Number of Trials (Edit Text)------------------------%
 function Number_Trials_Callback(hObject, eventdata, handles)
+        
 
 function Number_Trials_CreateFcn(hObject, eventdata, handles)
 
@@ -205,6 +220,20 @@ function Current_Trial_Text_CreateFcn(hObject, eventdata, handles)
 
 %-----------------Trials: Run Trial (Push Button)------------------------%
 function Run_Trial_Button_Callback(hObject, eventdata, handles)
-
+        % Get Number of Trials
+         number_trials = get(handles.Number_Trials,'String');
+         nt_string = str2double(number_trials);
+         
+        % Get Trial Duration
+         trial_duration = get(handles.Trial_Duration,'String');
+         td_string = str2double(trial_duration);
+         
+        % Trials Counter
+        
+        for i=1:nt_string
+            set(handles.Current_Trial_Text,'String',i);
+            pause(td_string);
+        end
+            
 %-----------------Trials: Stop Trial (Push Button)------------------------%
 function Stop_Trial_Button_Callback(hObject, eventdata, handles)
