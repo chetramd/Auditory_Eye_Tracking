@@ -96,6 +96,29 @@ end
 
 %----------------- Radial Contrast : Color (Pull Down Menu)------------------------%
 function Radial_Contrast_Colors_Callback(hObject, eventdata, handles)
+        current_val = get(handles.Radial_Contrast_Colors,'Value');
+        
+        
+        switch current_val
+            case 1
+                fprintf('%s\n','Red');
+            case 2
+                fprintf('%s\n','Orange');
+            case 3
+                fprintf('%s\n','Yellow');
+            case 4
+                fprintf('%s\n','Green');
+            case 5
+                fprintf('%s\n', 'Brown');
+            case 6
+                fprintf('%s\n','Indigo');
+            otherwise
+                fprintf('%s\n','Violet');
+        end
+                
+           
+                
+    
 
 function Radial_Contrast_Colors_CreateFcn(hObject, eventdata, handles)
 
@@ -107,9 +130,19 @@ end
 function Radial_Change_Color_Button_Callback(hObject, eventdata, handles)
             radial_selected_color = get(hObject,'Value');
             fprintf('%d\n',radial_selected_color);
+            
 %----------------- Radial Contrast : Change Background Image(Push Button)------------------------%
-function Radial_Change_Background_Button_Callback(hObject, eventdata, handles)
+function Radial_Change_Background_Callback(hObject, eventdata, handles)
+          [FileName,PathName] = uigetfile('*.jpg;*.png;*.gif','Select an Radial Background image');
+          image=imread(strcat(PathName,FileName));
+          axes(handles.Fixation_Point_Current_Symbol);
+          imshow(image);
+          
+function Radial_Change_Background_CreateFcn(hObject, eventdata, handles)
 
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
 
 %-----------------------------------------------------------------------%
 
@@ -135,7 +168,25 @@ end
 
 %----------------- Fixation_Point Contrast : Color (Pull Down Menu)------------------------%
 function Fixation_Point_Contrast_Colors_Callback(hObject, eventdata, handles)
-
+        current_val2 = get(handles.Fixation_Point_Contrast_Colors,'Value');
+        
+        switch current_val2
+            case 1
+                fprintf('%s\n','Red');
+            case 2
+                fprintf('%s\n','Orange');
+            case 3
+                fprintf('%s\n','Yellow');
+            case 4
+                fprintf('%s\n','Green');
+            case 5
+                fprintf('%s\n', 'Brown');
+            case 6
+                fprintf('%s\n','Indigo');
+            otherwise
+                fprintf('%s\n','Violet');
+        end
+        
 function Fixation_Point_Contrast_Colors_CreateFcn(hObject, eventdata, handles)
 
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
@@ -147,7 +198,11 @@ function Fixation_Point_Change_Color_Button_Callback(hObject, eventdata, handles
 
 %----------------- Fixation_Point Contrast : Change Background Image(Push Button)------------------------%
 function Fixation_Point_Change_Background_Button_Callback(hObject, eventdata, handles)
-
+          [FileName,PathName] = uigetfile('*.jpg;*.png;*.gif','Select an Radial Background image');
+          image2=imread(strcat(PathName,FileName));
+          axes(handles.Fixation_Point_Current_Symbol);
+          imshow(image2);
+          
 
 %-----------------------------------------------------------------------%
 
@@ -182,7 +237,7 @@ function Feedback_Signal_Types_Panel_SelectionChangeFcn(hObject, eventdata, hand
          
 %-----------------Patient's Eye Position: Change X Position (Static Text)------------------------%
 function Current_X_Position_Text_CreateFcn(hObject, eventdata, handles)
-
+        %set(handles.Current_X_Position_Text,'String','Hello');
 
 %-----------------Patient's Eye Position: Change Y Position (Static Text)------------------------%
 function Current_Y_Position_Text_CreateFcn(hObject, eventdata, handles)
@@ -227,13 +282,44 @@ function Run_Trial_Button_Callback(hObject, eventdata, handles)
         % Get Trial Duration
          trial_duration = get(handles.Trial_Duration,'String');
          td_string = str2double(trial_duration);
+        
+        % TEST
+            % fs = 44,100 samples/s
+            %[y,Fs] = wavread('sin_1kHz');
+            % fs/i = slower sampling
+            % fs*i = faster sampling
+            
+            Fs = 1000 ;  % Samples/s
+            tFreq = 100; % Tone Freq - Hz
+            s = 2;      % seconds
+            w = 2*pi;
+            t = linspace(0,s*tFreq*2*pi,round(s*Fs));
+            y = sin(t);
+            
+        %
+         
          
         % Trials Counter
         
         for i=1:nt_string
+            % Stop Button Needs to Implemented
+            
+            
+            samples = Fs*i;
+            %freq_units = 'Hz';
             set(handles.Current_Trial_Text,'String',i);
-            pause(td_string);
+            set(handles.Current_Feedback_Freq_Text,'String',samples);
+            sound(y,samples);
+            
+            %pause(1);
+            
         end
+        
+        
             
 %-----------------Trials: Stop Trial (Push Button)------------------------%
 function Stop_Trial_Button_Callback(hObject, eventdata, handles)
+
+
+%-----------------Trials: Reset Trial (Push Button)------------------------%
+function Reset_Trial_Button_Callback(hObject, eventdata, handles)
