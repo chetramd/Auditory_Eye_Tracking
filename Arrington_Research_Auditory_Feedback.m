@@ -198,7 +198,7 @@ function Fixation_Point_Change_Color_Button_Callback(hObject, eventdata, handles
 
 %----------------- Fixation_Point Contrast : Change Background Image(Push Button)------------------------%
 function Fixation_Point_Change_Background_Button_Callback(hObject, eventdata, handles)
-          [FileName,PathName] = uigetfile('*.jpg;*.png;*.gif','Select an Radial Background image');
+          [FileName,PathName] = uigetfile('*.jpg;*.png;*.gif','Select an Fixation Point Background image');
           image2=imread(strcat(PathName,FileName));
           axes(handles.Fixation_Point_Current_Symbol);
           imshow(image2);
