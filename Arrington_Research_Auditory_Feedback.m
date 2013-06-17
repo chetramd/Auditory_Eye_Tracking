@@ -579,6 +579,15 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
+<<<<<<< HEAD
+=======
+%----------------- Fixation_Point Contrast : Change Background Image(Push Button)------------------------%
+function Fixation_Point_Change_Background_Button_Callback(hObject, eventdata, handles)
+          [FileName,PathName] = uigetfile('*.jpg;*.png;*.gif','Select an Fixation Point Background image');
+          image2=imread(strcat(PathName,FileName));
+          axes(handles.Fixation_Point_Current_Symbol);
+          imshow(image2);
+>>>>>>> caa968b12e9c97baf8b6a675045e795a6bf893e7
           
 
 %-----------------------------------------------------------------------%
