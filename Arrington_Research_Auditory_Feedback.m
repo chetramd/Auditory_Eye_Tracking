@@ -30,6 +30,7 @@ end
 
 
 function Arrington_Research_Auditory_Feedback_OpeningFcn(hObject, eventdata, handles, varargin)
+<<<<<<< HEAD
     % Clear Command Window
     clc;
 
@@ -44,6 +45,28 @@ function Arrington_Research_Auditory_Feedback_OpeningFcn(hObject, eventdata, han
     
     % Initialize Variables
     
+=======
+    
+    clc;
+
+    %% Loading dynamically linked library from Viewpoint
+    
+    % DLL Location
+    dll_location = 'C:\Users\Chetram_Michael\Desktop\ViewPoint 2.9.2.5\VPX_InterApp.dll';
+    % SDK Location
+    sdk_location = 'C:\Users\Chetram_Michael\Desktop\ViewPoint 2.9.2.5\SDK\';
+    % Header Location
+    header_location = strcat(sdk_location,'vpx.h');
+    toolbox_location = strcat(sdk_location,'vptoolbox.h');
+    
+    % Initialize Connection to Viewpoint DLL
+    vpx_Initialize(dll_location,header_location,toolbox_location);
+    
+    
+    %% Initialize Variables
+    
+    % Start variables
+>>>>>>> 5a52e787b23f44b5a9d4681770daf4903c323077
     global start
     start = 0;
     
@@ -53,11 +76,19 @@ function Arrington_Research_Auditory_Feedback_OpeningFcn(hObject, eventdata, han
     % Generate GUI using hObjects
     guidata(hObject, handles);
     
+<<<<<<< HEAD
     % Initialize Eye Position Zeros 
     eye_x_position = zeros(1,50);
     eye_y_position = zeros(1,50);
     
     % Initialize Area of Interest Axes
+=======
+    % Initialize Eye X and Y Positions
+    eye_x_position = zeros(1,50);
+    eye_y_position = zeros(1,50);
+    
+    % Set Axes on AOI Axes
+>>>>>>> 5a52e787b23f44b5a9d4681770daf4903c323077
     axes(handles.AOI_Axes);
     
     %% Retrieve Eye Information from Viewpoint
@@ -67,12 +98,18 @@ function Arrington_Research_Auditory_Feedback_OpeningFcn(hObject, eventdata, han
     global check
     check = 0;
 
+<<<<<<< HEAD
     % Iteration
     count = 1;
     
     
     while(check ~= 1)
 
+=======
+    count = 1;
+    
+    while(check ~= 1)
+>>>>>>> 5a52e787b23f44b5a9d4681770daf4903c323077
         %% AREA OF INTEREST
         
         % Get X and Y Gaze Positions from Viewpoint
@@ -84,6 +121,7 @@ function Arrington_Research_Auditory_Feedback_OpeningFcn(hObject, eventdata, han
         eye_y_position(count)= gaze_Positions.y;
         
         % Get Handles from Functions
+<<<<<<< HEAD
         
         % Handles: Area of Interest Fixation and Radial Size
         handles  = AOI_Set_Fixation_Radial_Size_Button_Callback(handles.AOI_Set_Fixation_Radial_Size_Button,eventdata,handles);
@@ -100,6 +138,14 @@ function Arrington_Research_Auditory_Feedback_OpeningFcn(hObject, eventdata, han
         
         handles6 = Run_Trial_Button_Callback(handles.Run_Trial_Button, eventdata,handles);
         
+=======
+        handles  = AOI_Set_Fixation_Radial_Size_Button_Callback(handles.AOI_Set_Fixation_Radial_Size_Button,eventdata,handles);
+        handles1 = Radial_Contrast_Colors_Callback(handles.Radial_Contrast_Colors,eventdata,handles);
+        handles2 = Fixation_Point_Contrast_Colors_Callback(handles.Fixation_Point_Contrast_Colors,eventdata,handles);
+        handles3 = Feedback_Signal_Types_Panel_SelectionChangeFcn(handles.Feedback_Signal_Types_Panel,eventdata,handles);
+        handles4 = Radial_Contrast_Lum_Slider_Callback(handles.Radial_Contrast_Lum_Slider,eventdata,handles);
+        handles5 = Run_Trial_Button_Callback(handles.Run_Trial_Button, eventdata, handles);
+>>>>>>> 5a52e787b23f44b5a9d4681770daf4903c323077
         
         % Get Fixation Point Positions from Static Fields 
         fp_x_position = get(handles.AOI_X_Position,'String'); 
@@ -123,6 +169,7 @@ function Arrington_Research_Auditory_Feedback_OpeningFcn(hObject, eventdata, han
         x = str2double(fp_radius)*cos(t) + str2double(fp_x_position);
         y = str2double(fp_radius)*sin(t) + str2double(fp_y_position);
         
+<<<<<<< HEAD
         x3 = 0.025*cos(t) + str2double(fp_x_position);
         y3 = 0.025*sin(t) + str2double(fp_y_position);
         
@@ -130,16 +177,27 @@ function Arrington_Research_Auditory_Feedback_OpeningFcn(hObject, eventdata, han
         % Plot Eye X and Y Positions in AOI Axes
         plot(eye_x_position(count),eye_y_position(count),'*','MarkerSize',12);
         
+=======
+        % Plot Eye X and Y Positions in AOI Axes
+       
+        plot(eye_x_position(count),eye_y_position(count),'*','MarkerSize',12);
+>>>>>>> 5a52e787b23f44b5a9d4681770daf4903c323077
         xlim([0 1]); ylim([0 1]);
         hold on
         
         % Plot AOI and Fixation Point
         plot(x,y);
+<<<<<<< HEAD
         hold on
         plot(str2double(fp_x_position),str2double(fp_y_position));
         hold on
         
         plot(x3,y3);
+=======
+        
+        hold on
+        plot(str2double(fp_x_position),str2double(fp_y_position));
+>>>>>>> 5a52e787b23f44b5a9d4681770daf4903c323077
         
         
         %% AREA OF INTEREST Contrast
@@ -150,6 +208,7 @@ function Arrington_Research_Auditory_Feedback_OpeningFcn(hObject, eventdata, han
         radial_contrast_current_slider_pos = get(handles4.Radial_Contrast_Lum_Slider,'Value');
         % Get Current Color
         current_color = get(handles1.Radial_Contrast_Colors,'Value');
+<<<<<<< HEAD
         % Get Current Circle Color
         circle_color_fp = get(handles5.FP_Circle_Color,'Value');
         
@@ -179,6 +238,13 @@ function Arrington_Research_Auditory_Feedback_OpeningFcn(hObject, eventdata, han
         
         
         
+=======
+        
+        
+        if(current_color <= 1)
+%             fprintf('%s\n','No Color No Lum');
+        else
+>>>>>>> 5a52e787b23f44b5a9d4681770daf4903c323077
             % Set Color to AOI Region
             % RED - [1 0 0]
             % ORANGE - [1 0.8 0.3]
@@ -193,13 +259,17 @@ function Arrington_Research_Auditory_Feedback_OpeningFcn(hObject, eventdata, han
                     % No Color
                     plot(x,y);
                     hold on
+<<<<<<< HEAD
                     plot(x3,y3,'Color',clr);
                     hold on
+=======
+>>>>>>> 5a52e787b23f44b5a9d4681770daf4903c323077
                     axis([0 1 0 1])
                 case 2
                     % Red AOI
                     if(radial_contrast_current_slider_pos <= 10)
                         % 1st Stage RED
+<<<<<<< HEAD
                         
                         fill(x,y,[1 0 0]);
                         hold on 
@@ -208,70 +278,104 @@ function Arrington_Research_Auditory_Feedback_OpeningFcn(hObject, eventdata, han
                         axis([0 1 0 1])
                         
                         
+=======
+                        %xlim([0 1]); ylim([0 1]);
+                        fill(x,y,[1 0 0]);
+                        axis([0 1 0 1])
+                        hold on
+                        %xlim([0 1]); yli
+>>>>>>> 5a52e787b23f44b5a9d4681770daf4903c323077
                         
                         fprintf('%s\n','Red 1st Stage');
                     elseif (radial_contrast_current_slider_pos >= 10 && radial_contrast_current_slider_pos <= 20)
                         fill(x,y,[0.95 0 0]);
                         hold on
+<<<<<<< HEAD
                         plot(x3,y3,'Color',clr);
                         hold on
+=======
+>>>>>>> 5a52e787b23f44b5a9d4681770daf4903c323077
                         axis([0 1 0 1])
                         fprintf('%s\n','Red 2nd Stage');
                     elseif (radial_contrast_current_slider_pos >= 20 && radial_contrast_current_slider_pos <= 30)
                         fill(x,y,[0.9 0 0]);
                         hold on
+<<<<<<< HEAD
                         plot(x3,y3,'Color',clr);
                         hold on
+=======
+>>>>>>> 5a52e787b23f44b5a9d4681770daf4903c323077
                         axis([0 1 0 1])
                         fprintf('%s\n','Red 3nd Stage');
                     elseif (radial_contrast_current_slider_pos >= 30 && radial_contrast_current_slider_pos <= 40)
                         fill(x,y,[0.85 0 0]);
                         hold on
+<<<<<<< HEAD
                         plot(x3,y3,'Color',clr);
                         hold on
+=======
+>>>>>>> 5a52e787b23f44b5a9d4681770daf4903c323077
                         axis([0 1 0 1])
                         fprintf('%s\n','Red 4nd Stage');
                     elseif (radial_contrast_current_slider_pos >= 40 && radial_contrast_current_slider_pos <= 50)
                         fill(x,y,[0.8 0 0]);
                         hold on
+<<<<<<< HEAD
                         plot(x3,y3,'Color',clr);
                         hold on
+=======
+>>>>>>> 5a52e787b23f44b5a9d4681770daf4903c323077
                         axis([0 1 0 1])
                         fprintf('%s\n','Red 5nd Stage');
                     elseif (radial_contrast_current_slider_pos >= 50 && radial_contrast_current_slider_pos <= 60)
                         fill(x,y,[0.75 0 0]);
                         hold on
+<<<<<<< HEAD
                         plot(x3,y3,'Color',clr);
                         hold on
+=======
+>>>>>>> 5a52e787b23f44b5a9d4681770daf4903c323077
                         axis([0 1 0 1])
                         fprintf('%s\n','Red 6nd Stage');
                     elseif (radial_contrast_current_slider_pos >= 60 && radial_contrast_current_slider_pos <= 70)
                         fill(x,y,[0.7 0 0]);
                         hold on
+<<<<<<< HEAD
                         plot(x3,y3,'Color',clr);
                         hold on
+=======
+>>>>>>> 5a52e787b23f44b5a9d4681770daf4903c323077
                         axis([0 1 0 1])
                         fprintf('%s\n','Red 7nd Stage');
                     elseif (radial_contrast_current_slider_pos >= 70 && radial_contrast_current_slider_pos <= 80)
                         fill(x,y,[0.65 0 0]);
                         hold on
+<<<<<<< HEAD
                         plot(x3,y3,'Color',clr);
                         hold on
+=======
+>>>>>>> 5a52e787b23f44b5a9d4681770daf4903c323077
                         axis([0 1 0 1])
                         fprintf('%s\n','Red 8nd Stage');
                     elseif (radial_contrast_current_slider_pos >= 80 && radial_contrast_current_slider_pos <= 90)
                         fill(x,y,[0.6 0 0]);
                         hold on
+<<<<<<< HEAD
                         plot(x3,y3, 'Color',clr);
                         hold on
+=======
+>>>>>>> 5a52e787b23f44b5a9d4681770daf4903c323077
                         axis([0 1 0 1])
                         fprintf('%s\n','Red 9nd Stage');
                     else
                         % 90 to 100
                         fill(x,y,[0.5 0 0]);
                         hold on
+<<<<<<< HEAD
                         plot(x3,y3,'Color',clr);
                         hold on
+=======
+>>>>>>> 5a52e787b23f44b5a9d4681770daf4903c323077
                         axis([0 1 0 1])
                         fprintf('%s\n','Red 10nd Stage');
                     end
@@ -280,9 +384,12 @@ function Arrington_Research_Auditory_Feedback_OpeningFcn(hObject, eventdata, han
                         % 1st Stage ORANGE
                         %xlim([0 1]); ylim([0 1]);
                         fill(x,y,[1 0 0]);
+<<<<<<< HEAD
                         hold on
                         plot(x3,y3);
                         
+=======
+>>>>>>> 5a52e787b23f44b5a9d4681770daf4903c323077
                         axis([0 1 0 1])
                         hold on
                         %xlim([0 1]); yli
@@ -336,7 +443,11 @@ function Arrington_Research_Auditory_Feedback_OpeningFcn(hObject, eventdata, han
                         fprintf('%s\n','Red 10nd Stage');
                     end
             end
+<<<<<<< HEAD
         
+=======
+        end
+>>>>>>> 5a52e787b23f44b5a9d4681770daf4903c323077
         
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         % Color Pull Down & Luminance Slider
@@ -464,9 +575,15 @@ function Arrington_Research_Auditory_Feedback_OpeningFcn(hObject, eventdata, han
         % Set Static Text(Patient's Eye Position): If Eye Position is within AOI (Yes or No)
          
         if(distance <= str2double(fp_radius))
+<<<<<<< HEAD
             set(handles.Eye_Position_Area_Interest_Text,'String','YES','ForegroundColor','b');
         else
             set(handles.Eye_Position_Area_Interest_Text,'String','NO','ForegroundColor','r');
+=======
+            set(handles.Eye_Position_Area_Interest_Text,'String','YES');
+        else
+            set(handles.Eye_Position_Area_Interest_Text,'String','NO');
+>>>>>>> 5a52e787b23f44b5a9d4681770daf4903c323077
         end
  
  
@@ -484,6 +601,7 @@ function Arrington_Research_Auditory_Feedback_OpeningFcn(hObject, eventdata, han
         % Selected Tag for Selected Feedback Signal
         select_Tag = get(selected_feedback_signal,'Tag');
         
+<<<<<<< HEAD
         % Distance from Center of Circle to Point
         distance_Center_to_Point_X = str2double(fp_x_position) - eye_x_position(count);
         distance_Center_to_Point_Y = str2double(fp_y_position) - eye_y_position(count);
@@ -613,6 +731,127 @@ function Arrington_Research_Auditory_Feedback_OpeningFcn(hObject, eventdata, han
         
         count = count +1;
         
+=======
+        switch select_Tag
+            case 'Feedback_Signal_Tone'
+                % Feedback Signal: Tone
+%                 fprintf('%s\n', 'Tone');
+            otherwise
+                % Feedback Signal: Click
+                % Point Circle Collision Detection
+                
+                % Distance from Center of Circle to Point
+                distance_Center_to_Point_X = str2double(fp_x_position) - eye_x_position(count);
+                distance_Center_to_Point_Y = str2double(fp_y_position) - eye_y_position(count);
+                
+                % Length from Center to Point
+                length_Center_to_Point = sqrt((distance_Center_to_Point_X).^2 +(distance_Center_to_Point_Y).^2);
+                
+                radius_fp = str2double(fp_radius);
+                
+                % Store previous distance into array
+                
+                
+                
+                % test = 0;
+                
+                new_distance  =  length_Center_to_Point + 1;
+                previous_distance  =  new_distance -1;
+                
+%                  fprintf('%i\n',new_distance);
+%                   fprintf('%i\n',previous_distance);
+                
+                
+                if((new_distance > radius_fp) && (previous_distance < radius_fp ))
+                    % Click (moving from inner to outer
+%                       fprintf('%s\n','No Click');
+                    [y,Fs] = wavread('click_sound.wav');
+                    sound(y,Fs)
+                else
+%                         fprintf('%s\n','No Click');
+                        
+                end
+                   
+                        
+                           
+                    
+                    
+%                     fprintf('%s\n','Click');
+%                     
+%                     % Read Click WAV file
+%                     [y,Fs] = wavread('click_sound.wav');
+%                     sound(y,Fs);
+                    
+                    
+%                 else
+%                     fprintf('%s\n','No Click');
+%                 end
+        end
+        
+        
+
+
+%         floor = .002;
+%         coef = 1;
+%         if distance > floor
+%             frequency = coef*(1/(.01*distance));
+%         else
+%             frequency = coef*(1/floor);
+%         end
+%  
+%         Fs =1000;
+%         nSeconds = .05;
+%  
+%         y = 100*sin(linspace(0, nSeconds*frequency*2*pi, round(nSeconds*Fs)));
+        %sound(y, Fs);
+        %% Experimental Trials
+        
+        number_trials = str2double(get(handles5.Number_Trials,'String'));
+        trial_duration = str2double(get(handles5.Trial_Duration,'String'));
+        toggle_state = get(handles5.Run_Trial_Button,'Value');
+        
+        if(toggle_state == 0)
+           % Not Pressed 
+        else
+           % Toggle is Pressed
+           
+           % Iterate through Number of Trials
+           wait = 1;
+           
+           for i = 1:number_trials
+                % Set Current Trial Executing
+                set(handles.Current_Trial_Text,'String',i);
+            
+                % Set Text File Specifications
+                t = 'trial_';
+                s = '.txt';
+                r = num2str(i);
+                trial_txt = strcat(t,r,s);
+                
+                
+               % Get Real Time Eye X and Y Data
+               
+               while(check ~= 1)
+                   fprintf('%f  %f\n',eye_x_position(wait),eye_y_position(wait));
+                
+                   wait= wait+1;
+                   
+               end
+               
+               %wait = 1;
+           end
+            
+            % Release Toggle
+            set(handles5.Run_Trial_Button,'Value',0);
+            
+            
+        end
+        
+        
+        %% Iterate through real time data from Viewpoint
+        
+        count = count +1;
+>>>>>>> 5a52e787b23f44b5a9d4681770daf4903c323077
         start = 1;
     end
     delete(hObject);
@@ -887,6 +1126,143 @@ end
 %----------------- Fixation_Point Contrast : Color (Pull Down Menu)------------------------%
 function [handles] = Fixation_Point_Contrast_Colors_Callback(hObject, eventdata, handles)
         
+<<<<<<< HEAD
+=======
+%         % Current Selected Color
+%         current_color2 = get(handles.Fixation_Point_Contrast_Colors,'Value');
+%         
+%         % Current Eye X Position
+%         cur_eye_x2 = str2double(get(handles.AOI_X_Position,'String'));
+%         % Current Eye Y Position
+%         cur_eye_y2 = str2double(get(handles.AOI_Y_Position,'String'));
+%         
+%         % Current Radial Size
+%         cur_radial_size = str2double(get(handles.AOI_Radial_Size,'String'));
+%         
+%         % Current AOI Color
+%         
+%         cur_AOI_Color = get(handles.Radial_Contrast_Colors,'Value');
+%         
+%         switch cur_AOI_Color
+%             case 1
+%                 set_Color = 'w';
+%             case 2
+%                 set_Color = 'r';
+%             case 3
+%                 orange = [1 0.8 0.3];
+%                 set_Color = orange;
+%             case 4
+%                 set_Color = 'y';
+%             case 5
+%                 set_Color = 'g';
+%             case 6
+%                 brown = [.7 .5 0];
+%                 set_Color = brown;
+%             case 7
+%                 set_Color ='b';
+%                 
+%             otherwise    
+%                 violet = [0.6 0 1];
+%                 set_Color = violet;
+%         end
+%               
+%         
+%         
+%         
+%         % Parametric Equations of AOI
+%         t = linspace(0,2*pi,1000);
+%         x12 = cur_radial_size*cos(t) + cur_eye_x2;
+%         y12 = cur_radial_size*sin(t) + cur_eye_y2;
+%         
+%         axes(handles.AOI_Axes); 
+%         
+%         switch current_color2
+%             case 1
+%                 % White FP
+%                 
+%                 fill(x12,y12,set_Color);
+%                 hold on
+%        
+%                 plot(cur_eye_x2,cur_eye_y2,'x','MarkerSize',15,'Color','w');
+%         
+%                 hold off
+%                 axis([0 1 0 1])
+% 
+%             case 2
+%                 % Red FP
+%                 fill(x12,y12,set_Color);
+%                 hold on
+%        
+%                 plot(cur_eye_x2,cur_eye_y2,'x','MarkerSize',15,'Color','r');
+%         
+%                 hold off
+%                 axis([0 1 0 1])
+%                 
+%             case 3
+%                 % Orange FP
+%                 orange = [1 0.8 0.3];
+%                 fill(x12,y12,set_Color);
+%                 hold on
+%        
+%                 plot(cur_eye_x2,cur_eye_y2,'x','MarkerSize',15,'Color',orange);
+%         
+%                 hold off
+%                 axis([0 1 0 1])
+%                 
+%             case 4
+%                 % Yellow FP
+%                 fill(x12,y12,set_Color);
+%                 hold on
+%        
+%                 plot(cur_eye_x2,cur_eye_y2,'x','MarkerSize',15,'Color','y');
+%         
+%                 hold off
+%                 axis([0 1 0 1])
+%                 
+%             case 5
+%                 % Green FP
+%                 fill(x12,y12,set_Color);
+%                 hold on
+%        
+%                 plot(cur_eye_x2,cur_eye_y2,'x','MarkerSize',15,'Color','g');
+%         
+%                 hold off
+%                 axis([0 1 0 1])
+%                 
+%             case 6
+%                 % Brown
+%                 brown = [.7 .5 0];
+%                 fill(x12,y12,set_Color);
+%                 hold on
+%        
+%                 plot(cur_eye_x2,cur_eye_y2,'x','MarkerSize',15,'Color',brown);
+%         
+%                 hold off
+%                 axis([0 1 0 1])
+%                 
+%             case 7
+%                 % Indigo (Blue)
+%                 fill(x12,y12,set_Color);
+%                 hold on
+%        
+%                 plot(cur_eye_x2,cur_eye_y2,'x','MarkerSize',15,'Color','b');
+%         
+%                 hold off
+%                 axis([0 1 0 1])
+%                 
+%             otherwise
+%                 % Violet
+%                 violet = [0.6 0 1];
+%                 fill(x12,y12,set_Color);
+%                 hold on
+%        
+%                 plot(cur_eye_x2,cur_eye_y2,'x','MarkerSize',15,'Color',violet);
+%         
+%                 hold off
+%                 axis([0 1 0 1])
+%                 
+%         end
+>>>>>>> 5a52e787b23f44b5a9d4681770daf4903c323077
         
 function Fixation_Point_Contrast_Colors_CreateFcn(hObject, eventdata, handles)
 
@@ -964,7 +1340,10 @@ function Fixation_Point_Change_Background_Button_Callback(hObject, eventdata, ha
           axes(handles.Fixation_Point_Current_Symbol);
           imshow(image2);
       
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5a52e787b23f44b5a9d4681770daf4903c323077
 
 
 %--------------------------AUDITORY FEEDBACK SETTINGS----------------------%
@@ -979,6 +1358,31 @@ function Current_Feedback_Freq_Text_CreateFcn(hObject, eventdata, handles)
 function Feedback_Signal_Types_Panel_CreateFcn(hObject, eventdata, handles)
 
 function [handles] = Feedback_Signal_Types_Panel_SelectionChangeFcn(hObject, eventdata, handles)
+<<<<<<< HEAD
+=======
+        
+        % Initialize Feedback Signal
+%         feedback_tone = 'Tone';
+%         feedback_click = 'Click';
+%         
+%         % Gets Selected Feedback Signal
+%         selected_feedback_signal = get(eventdata.NewValue,'Tag');
+        
+%         switch selected_feedback_signal 
+%             case 'Feedback_Signal_Tone'
+%                 set(handles.Current_Feedback_Signal_Text,'String',feedback_tone);
+%             otherwise
+%                 set(handles.Current_Feedback_Signal_Text,'String',feedback_click);
+%         end
+        
+function Current_X_Position_Text_Callback(hObject, eventdata, handles)         
+%-----------------Patient's Eye Position: Change X Position (Static Text)------------------------%
+function Current_X_Position_Text_CreateFcn(hObject, eventdata, handles)
+        %set(handles.Current_X_Position_Text,'String','Hello');
+
+%-----------------Patient's Eye Position: Change Y Position (Static Text)------------------------%
+function Current_Y_Position_Text_Callback(hObject, eventdata, handles)
+>>>>>>> 5a52e787b23f44b5a9d4681770daf4903c323077
 
 
 %-----------------------------EYE POSITION (+)-----------------------------%
@@ -988,6 +1392,7 @@ function Current_X_Position_Text_Callback(hObject, eventdata, handles) %#ok<INUS
 
 function Current_X_Position_Text_CreateFcn(hObject, eventdata, handles) %#ok<INUSD,DEFNU>
 
+<<<<<<< HEAD
 %-----------------Eye Position: Change Y Position (Static Text)------------%
 function Current_Y_Position_Text_Callback(hObject, eventdata, handles) %#ok<INUSD,DEFNU>
 
@@ -995,6 +1400,19 @@ function Current_Y_Position_Text_CreateFcn(hObject, eventdata, handles) %#ok<INU
 
 %-----------------Eye Position: Eye Position within AOI (Static Text)------%
 function Eye_Position_Area_Interest_Text_CreateFcn(hObject, eventdata, handles) %#ok<INUSD,DEFNU>
+=======
+% --- Executes when user attempts to close figure1.
+function figure1_CloseRequestFcn(hObject, eventdata, handles)
+
+    global start
+    global check
+
+    if(start==1)
+        check = 1;  
+    else
+        delete(hObject);
+    end
+>>>>>>> 5a52e787b23f44b5a9d4681770daf4903c323077
 
 
 
@@ -1024,6 +1442,7 @@ function Trial_Duration_CreateFcn(hObject, eventdata, handles)%#ok<INUSD,DEFNU>
         set(hObject,'BackgroundColor','white');
     end
 
+<<<<<<< HEAD
 %-----------------Trials: Run Trial (Toggle Button)--------------------------%
 function [handles] = Run_Trial_Button_Callback(hObject, eventdata, handles) %#ok<INUSL,DEFNU>
         
@@ -1050,6 +1469,43 @@ function Reset_Trials_Button_Callback(hObject, eventdata, handles) %#ok<INUSL,DE
         
         
         
+=======
+%-----------------Trials: Run Trial (Push Button)------------------------%
+function [handles] = Run_Trial_Button_Callback(hObject, eventdata, handles)
+        
+        % Experimental Trials Parameters
+%         number_trials = str2double(get(handles.Number_Trials,'String'));
+%         trial_duration = str2double(get(handles.Trial_Duration,'String'));
+%         
+%         % Trials Counter
+%         
+%         global eye_data
+%         eye_data = 0;
+%         
+%         eye_x_position = zeros(1,50);
+%         eye_y_position = zeros(1,50);
+%         
+%         
+%         wait = 1;
+% 
+%         
+%         for i = 1:number_trials
+%             % Set Current Trial Executing
+%             set(handles.Current_Trial_Text,'String',i);
+%             
+%             % Set Text File Specifications
+%             t = 'trial_';
+%             s = '.txt';
+%             r = num2str(i);
+%             trial_txt = strcat(t,r,s);
+%             
+%             
+%              
+%             fid = fopen(trial_txt,'w');
+%             fprintf(fid,'%6.2f %12.8f\n',y);
+%             
+%         end
+>>>>>>> 5a52e787b23f44b5a9d4681770daf4903c323077
         
         
         
@@ -1059,8 +1515,27 @@ function Reset_Trials_Button_Callback(hObject, eventdata, handles) %#ok<INUSL,DE
         
 % -------------------------------------------------------------------------%            
             
+<<<<<<< HEAD
 % --- Executes on selection change in FP_Circle_Color.
 function [handles] = FP_Circle_Color_Callback(hObject, eventdata, handles)
+=======
+%-----------------Trials: Stop Current Trial (Push Button)------------------------%
+function Stop_Current_Trial_Button_Callback(hObject, eventdata, handles)
+         
+            
+
+
+%-----------------Trials: Reset Trial (Push Button)------------------------%
+function Reset_Trials_Button_Callback(hObject, eventdata, handles)
+
+
+%-----------------Trials: Stop All Trials (Push Button)------------------------%
+function Stop_All_Trials_Button_Callback(hObject, eventdata, handles)
+
+
+
+
+>>>>>>> 5a52e787b23f44b5a9d4681770daf4903c323077
 
 
 % --- Executes during object creation, after setting all properties.
