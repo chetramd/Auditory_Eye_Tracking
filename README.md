@@ -1,7 +1,6 @@
 Auditory_Eye_Tracking
 =====================
 
-Auditory Feedback using Eye Tracker
+Auditory Feedback using Arrington Research Eye Tracking System (Viewpoint)
 
-Senior Design Project detailing the use of Eye Tracking sponsored by Arrington Research to 
-present Auditory Feedback in surronding environment.
+- Senior Design Project: Fall 2013 : Computer Engineering
