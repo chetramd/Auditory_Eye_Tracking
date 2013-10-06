@@ -1,3 +1,16 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Arrington Research - Auditory Feedback using a Eye Tracker
+%   
+%   Created and Developed By: Chetram Dasrat and Michael Iannelli
+%
+%   Senior Design Project - Spring 2013 to Fall 2013 
+%   Computer Engineering
+%
+%   The City College of New York - Department of Computer Science
+%   Advisor: Professor Izidor Gertner
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 function varargout = Arrington_Research_Auditory_Feedback(varargin)
 
 % Begin initialization code - DO NOT EDIT
@@ -20,7 +33,6 @@ end
 % End initialization code - DO NOT EDIT
 
 
-% --- Executes just before Arrington_Research_Auditory_Feedback is made visible.
 function Arrington_Research_Auditory_Feedback_OpeningFcn(hObject, eventdata, handles, varargin)
 
 try
@@ -454,22 +466,22 @@ try
                 radius_fp = str2double(fp_radius);
                               
                 %Set new Position
-                newPos = get(handles.Eye_Position_Area_Interest_Text,'String');
+                newPosition = get(handles.Eye_Position_Area_Interest_Text,'String');
                 
                 %Declare old position as global variable
-                global oldPos
+                global oldPosition
                 
                 %Compare New Position against old position 
                 %if location of old position is different from new position
                 %with respect to the location within roi, output a "click"
-                if(newPos(1) ~= oldPos(1))
+                if(newPosition(1) ~= oldPosition(1))
                     [y,Fs] = wavread('click_sound.wav');
                     fprintf('%s\n','Click');
                     sound(y,Fs);
                 end
                 
                 %Shift new Position to old Position
-                oldPos = newPos;
+                oldPosition = newPosition;
         end
         
         
