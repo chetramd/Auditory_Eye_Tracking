@@ -1,0 +1,16 @@
+CHANGELOG : Arrington Research : Auditory Feedback using a Eye Tracker System
+
+
+Rev 1.0 
+	- Initial Revision
+	- Merged Sections Parts Successfully Completed
+		- Auditory Feedback (Click and Tone)
+		- Experimental Trials
+	- Edited Header Information
+	- Renamed Auditory Feedback.m to Main.m
+	
+Rev 1.01
+	- Included Changelog
+
+	
+	
